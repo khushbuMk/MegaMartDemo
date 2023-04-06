@@ -12,8 +12,8 @@ export default function Login({ setToken }) {
     const [isLoading, setIsLoading] = useState(false);
 
     const handleLogin = async () => {
-        setIsLoading(true);
-        LoginAPI(setToken, username, password);
+        // setIsLoading(true);
+        LoginAPI(setToken, username, password, setIsLoading);
     }
 
     return (

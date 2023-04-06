@@ -5,7 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const storeToken = async (token) => {
     try {
         await AsyncStorage.setItem('@token_key', token);
-        console.log('Token stored successfully.');
+        console.log('Token',token,'stored successfully.');
     } catch (e) {
         console.log('Failed to store the token:', e);
     }
@@ -15,7 +15,7 @@ const storeToken = async (token) => {
 const retrieveToken = async () => {
     try {
         const token = await AsyncStorage.getItem('@token_key');
-        console.log('Token retrieved successfully.');
+        console.log('Token',token,'retrieved successfully.');
         return token;
     } catch (e) {
         console.log('Failed to retrieve the token:', e);
@@ -25,9 +25,9 @@ const retrieveToken = async () => {
 // Clear the token
 const clearToken = async () => {
     try {
-        const token = await AsyncStorage.removeItem('@token_key');
+        await AsyncStorage.removeItem('@token_key');
+        // await AsyncStorage.clear()
         console.log('Token removed successfully.');
-        return token;
     } catch (e) {
         console.log('Failed to remove the token:', e);
     }

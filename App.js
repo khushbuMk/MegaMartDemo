@@ -6,15 +6,16 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStore from './src/AsyncStore';
 import { NavigationContainer } from '@react-navigation/native';
 import Home from './src/HomeScreen';
+import 'react-native-gesture-handler'
 
 const Stack = createStackNavigator();
 
 export default function App() {
   const [token, setToken] = useState();
+  
   const fetchToken = useCallback(async () => {
     setToken(await AsyncStore.retrieveToken())
-    console.log(token)
-  }, [token])
+  }, [])
 
   useEffect(() => {
     fetchToken()
