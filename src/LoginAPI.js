@@ -12,10 +12,8 @@ export default LoginAPI = async (setToken, email, password, setIsLoading) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                // email,
-                // password
-                email: 'eve.holt@reqres.in',
-                password: 'cityslicka'
+                email,
+                password
             })
         })
         const json = await response.json();
@@ -50,16 +48,4 @@ export default LoginAPI = async (setToken, email, password, setIsLoading) => {
         console.error(error)
         setIsLoading(false)
     }
-
-
-    // .then(data => {
-    //     AsyncStore.storeToken(data.token);
-    //     setToken(data.token)
-    //     setIsLoading(false)
-    // })
-    // .catch(error => {
-    //     console.error(error);
-    //     setIsLoading(false)
-    // });
-
 }
