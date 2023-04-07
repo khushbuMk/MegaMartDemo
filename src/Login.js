@@ -4,6 +4,7 @@ import LoginAPI from './LoginAPI';
 import { Ionicons } from '@expo/vector-icons';
 import { Images } from './constants';
 import { ActivityIndicator } from 'react-native';
+import { ScrollView } from 'react-native';
 
 export default function Login({ setToken }) {
     const [username, setUsername] = useState('');
@@ -17,7 +18,7 @@ export default function Login({ setToken }) {
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
             <Image style={styles.logo} source={Images.Logo} resizeMode={'contain'} />
             <Text style={styles.heading}>
                 Welcome to {'\n'}
@@ -67,7 +68,7 @@ export default function Login({ setToken }) {
                     <ActivityIndicator color='white' />
                 }
             </TouchableOpacity>
-        </View>
+        </ScrollView>
     );
 }
 

@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { Dimensions, FlatList, Image, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import AsyncStore from './AsyncStore';
-import { Categories, Images } from './constants';
+import { Categories, EcomData, Images } from './constants';
 import { Ionicons } from '@expo/vector-icons';
 import { SectionHead } from './components/SectionHead';
 import CategoryItem from './components/CategoryItem';
 import ProductCard from './components/ProductCard';
+import ProductCardContainer from './components/ProductCardContainer';
 
 
 
@@ -49,20 +50,6 @@ export default function Home({ navigation, setToken }) {
             },
         })
     }, [])
-
-
-    // // ref
-    // const bottomSheetRef = useRef(null);
-
-    // // variables
-    // const snapPoints = useMemo(() => ['5%', '50%', '100%'], []);
-
-    // // callbacks
-    // const handleSheetChanges = useCallback((index) => {
-    //     console.log('handleSheetChanges', index);
-    // }, []);
-
-
 
 
     return (
@@ -118,28 +105,13 @@ export default function Home({ navigation, setToken }) {
             >
 
                 <SectionHead title={'New Arrivals'} />
-                <ScrollView horizontal >
-
-                    <ProductCard
-                        title="TMA-2 HD Wireless"
-                        image={Images.Products.headphones}
-                        price={1500}
-                        discount={500}
-                        rating={4.6}
-                    // variants={3}
-                    />
-
-                    <ProductCard
-                        title="Orange Nagpur- 1kg"
-                        image={Images.Products.oranges}
-                        price={100}
-                        // discount={500}
-                        rating={4.6}
-                    // variants={3}
-                    />
-
-                </ScrollView>
-
+                <FlatList
+                    horizontal
+                    data={EcomData.new_arrival}
+                    renderItem={ProductCardContainer}
+                    keyExtractor={({index})=>index}
+                />
+                
 
                 <View style={{ height: 170 }} >
                     <Image source={Images.Banner.MobileSale} style={styles.banner} resizeMode='contain' />
@@ -147,27 +119,12 @@ export default function Home({ navigation, setToken }) {
 
 
                 <SectionHead title={'Suggested for you'} />
-                <ScrollView horizontal >
-
-                    <ProductCard
-                        title="Apple Shimla- 2 kg"
-                        image={Images.Products.apple}
-                        price={1500}
-                        discount={500}
-                        rating={4.6}
-                    // variants={3}
-                    />
-
-                    <ProductCard
-                        title="TMA-2 HD Wireless"
-                        image={Images.Products.headphones}
-                        price={100}
-                        // discount={500}
-                        rating={4.6}
-                    // variants={3}
-                    />
-
-                </ScrollView>
+                <FlatList
+                    horizontal
+                    data={EcomData.suggested}
+                    renderItem={ProductCardContainer}
+                    keyExtractor={({index})=>index}
+                />
 
                 <View style={{ height: 170 }} >
                     <Image source={Images.Banner.HeadphoneSale} style={styles.banner} resizeMode='contain' />
@@ -175,97 +132,39 @@ export default function Home({ navigation, setToken }) {
 
 
                 <SectionHead title={"What's Trending"} />
-                <ScrollView horizontal >
-
-                    <ProductCard
-                        title="TMA-2 HD Wireless"
-                        image={Images.Products.headphones}
-                        price={1500}
-                        discount={500}
-                        rating={4.6}
-                    />
-
-                    <ProductCard
-                        title="TMA-2 HD Wired"
-                        image={Images.Products.headphones}
-                        price={1500}
-                        // discount={500}
-                        rating={4.6}
-                        variants={3}
-                    />
-
-                </ScrollView>
-
+                <FlatList
+                    horizontal
+                    data={EcomData.trending}
+                    renderItem={ProductCardContainer}
+                    keyExtractor={({index})=>index}
+                />
 
                 <SectionHead title={'Top Picks-'} subTitle={'Grocery'} />
-                <ScrollView horizontal >
-
-                    <ProductCard
-                        title="Moong Dal    - 1 KG "
-                        image={Images.Products.moong}
-                        price={150}
-                        discount={50}
-                        rating={4.6}
-                    // variants={3}
-                    />
-
-                    <ProductCard
-                        title="Moong Dal    - 5 KG "
-                        image={Images.Products.moong}
-                        price={1500}
-                        // discount={500}
-                        rating={4.6}
-                    // variants={3}
-                    />
-
-                </ScrollView>
+                <FlatList
+                    horizontal
+                    data={EcomData.Grocery}
+                    renderItem={ProductCardContainer}
+                    keyExtractor={({index})=>index}
+                />
+                
 
 
                 <SectionHead title={'Top Picks-'} subTitle={'Fashion'} />
-                <ScrollView horizontal >
-
-                    <ProductCard
-                        title="Blue Churidar Suit"
-                        image={Images.Products.suit}
-                        price={1500}
-                        discount={500}
-                        rating={4.6}
-                    // variants={3}
-                    />
-
-                    <ProductCard
-                        title="Green Flared Kurta"
-                        image={Images.Products.kurta}
-                        price={1500}
-                        // discount={500}
-                        rating={4.6}
-                        variants={3}
-                    />
-
-                </ScrollView>
+                <FlatList
+                    horizontal
+                    data={EcomData.Fashion}
+                    renderItem={ProductCardContainer}
+                    keyExtractor={({index})=>index}
+                />
 
 
                 <SectionHead title={'Top Picks-'} subTitle={'Fruits & Vegetables'} />
-                <ScrollView horizontal >
-
-                    <ProductCard
-                        title="Orange Nagpur- 1 Kg"
-                        image={Images.Products.oranges}
-                        price={150}
-                        discount={50}
-                        rating={4.6}
-                    // variants={3}
-                    />
-
-                    <ProductCard
-                        title="Apple Shimla- 1kg"
-                        image={Images.Products.apple}
-                        price={100}
-                        rating={4.6}
-                        variants={3}
-                    />
-
-                </ScrollView>
+                <FlatList
+                    horizontal
+                    data={EcomData.FruitsNVegs}
+                    renderItem={ProductCardContainer}
+                    keyExtractor={({index})=>index}
+                />
 
 
                 <TouchableOpacity onPress={handleLogout} style={styles.button} >
