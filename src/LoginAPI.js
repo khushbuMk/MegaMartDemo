@@ -31,7 +31,6 @@ export default LoginAPI = async (setToken, email, password, setIsLoading) => {
             message = json
         }
 
-        // console.log("MK",response.status,json)
         Platform.OS === 'android' ?
             ToastAndroid.showWithGravityAndOffset(
                 message,
